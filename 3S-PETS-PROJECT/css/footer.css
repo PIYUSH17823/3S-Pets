@@ -1,0 +1,22 @@
+/* css/footer.css */
+
+.footer-link {
+    display: inline-block;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.footer-link:hover {
+    color: #E63946;
+    transform: translateX(5px);
+}
+
+/* Optional: a subtle fade-in for the whole footer */
+footer {
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,16 @@
+/* Base Font and Scroll Behavior */
+body { 
+    font-family: 'Fredoka', sans-serif; 
+    scroll-behavior: smooth; 
+}
+
+/* The Bubbly Background Shape */
+.blob { 
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; 
+}
+
+/* Standard Section Spacing */
+section {
+    position: relative;
+    overflow: hidden;
+}

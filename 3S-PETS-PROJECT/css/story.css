@@ -1,0 +1,8 @@
+/* story.css */
+.promise-card {
+    transition: background 0.3s ease;
+}
+
+.promise-card:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
