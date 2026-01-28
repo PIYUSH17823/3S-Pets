@@ -1,0 +1,32 @@
+{
+  "catalog": [
+    {
+      "id": "f1",
+      "category": "Food",
+      "name": "Super-Food Kibble",
+      "details": "Packed with Omega-3 and love.",
+      "benefits": ["Shiny Coat", "Strong Bones"],
+      "color": "#FFD1D1"
+    },
+    {
+      "id": "l1",
+      "category": "Litter",
+      "name": "Fresh-Step Crystals",
+      "details": "Smells like a summer breeze.",
+      "benefits": ["99% Dust Free", "Instant Clumping"],
+      "color": "#D1E8FF"
+    },
+    {
+      "id": "b1",
+      "category": "Biscuits",
+      "name": "Crunchy Hearts",
+      "details": "The ultimate 'Good Boy' reward.",
+      "benefits": ["Grain Free", "No Preservatives"],
+      "color": "#FFE4D1"
+    }
+  ],
+  "brandInfo": {
+    "vision": "Healthy pets make happy homes.",
+    "values": ["Purity", "Safety", "Smile-first service"]
+  }
+}

@@ -1,0 +1,24 @@
+nav {
+    border-bottom: 1px solid rgba(230, 57, 70, 0.05);
+}
+
+nav a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Animated underline effect */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #E63946;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
