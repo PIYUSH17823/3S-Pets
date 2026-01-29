@@ -1,24 +1,46 @@
-nav {
-    border-bottom: 1px solid rgba(230, 57, 70, 0.05);
-}
+/* css/navbar.css */
 
-nav a {
+.nav-link {
     position: relative;
     transition: color 0.3s ease;
 }
 
-/* Animated underline effect */
-nav a::after {
+.nav-link:hover {
+    color: #E63946;
+}
+
+/* The "Slider" Underline */
+.nav-link::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -4px;
+    bottom: -6px;
     left: 0;
     background-color: #E63946;
-    transition: width 0.3s ease;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-nav a:hover::after {
+.nav-link:hover::after {
     width: 100%;
+}
+
+/* Subtle entrance animation for the navbar */
+nav {
+    animation: slideDown 0.8s cubic-bezier(0.2, 1, 0.2, 1) forwards;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive: Ensure the navbar doesn't hide text in the Hero */
+@media (max-width: 768px) {
+    nav {
+        padding: 10px;
+    }
+    nav .max-w-7xl {
+        padding: 12px 20px;
+    }
 }

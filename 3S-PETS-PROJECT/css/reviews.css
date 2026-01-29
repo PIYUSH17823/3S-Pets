@@ -1,5 +1,37 @@
+/* css/reviews.css */
 
-/* reviews.css */
+.review-card {
+    background: white;
+    position: relative;
+    cursor: default;
+}
+
+/* Create the masonry stagger effect for the second column */
+@media (min-width: 768px) {
+    .review-card:nth-child(2) {
+        margin-top: 3rem;
+    }
+}
+
+.review-card:hover {
+    transform: translateY(-10px);
+}
+
+.review-card .text-\[#E63946\] {
+    transition: transform 0.3s ease;
+    display: inline-block; /* Essential for transform to work */
+}
+
+.review-card:hover .text-\[#E63946\] {
+    transform: scale(1.2);
+}
+/* Subtle entrance animation */
 #review-container > div {
-    border-left: 4px solid #E63946;
+    animation: fadeInScale 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
