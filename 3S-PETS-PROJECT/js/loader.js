@@ -21,6 +21,7 @@ async function initSite() {
     await loadComponent('catalog-slot', 'catalog.html');
     await loadComponent('story-slot', 'story.html');
     await loadComponent('reviews-slot', 'reviews.html');
+    await loadComponent('contact-slot', 'contact.html');
     await loadComponent('footer-slot', 'footer.html');
 
     console.log("DOM is ready. Calling renderAll...");

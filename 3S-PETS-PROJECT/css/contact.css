@@ -1,0 +1,38 @@
+/* css/contact.css */
+
+/* Use the #contact ID to force these styles regardless of hero.css */
+#contact {
+    background-color: #1D1D1F !important;
+    color: #FFFFFF;
+}
+
+#contact h2 {
+    color: #FFFFFF;
+}
+
+/* Targeting inputs only within the contact section */
+#contact .contact-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 0;
+    font-size: 1.1rem;
+    color: white !important; /* Forces text to stay white */
+    outline: none;
+    transition: all 0.4s ease;
+}
+
+#contact .contact-input:focus {
+    border-color: #E63946;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+#contact .contact-input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+/* Styling labels to ensure visibility */
+#contact label {
+    color: #9CA3AF; /* gray-400 equivalent */
+}
