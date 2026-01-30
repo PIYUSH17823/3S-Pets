@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/hero.css">
     <link rel="stylesheet" href="css/catalog.css">
-    <!-- <link rel="stylesheet" href="css/story.css"> -->
+    <link rel="stylesheet" href="css/story.css">
     <link rel="stylesheet" href="css/reviews.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -23,13 +23,24 @@
     <div id="navbar-slot"></div>
     <div id="hero-slot"></div>
     <div id="catalog-slot"></div>
-    <!-- <div id="story-slot"></div> -->
+    <div id="story-slot"></div>
     <div id="reviews-slot"></div>
     <div id="contact-slot"></div>
     <div id="footer-slot"></div>
+    <div id="modal-container"></div>
+
 
     <script src="./js/render.js"></script>
     <script src="./js/loader.js"></script>
-</body>
 
+    <div id="tech-modal" class="fixed inset-0 z-[200] hidden items-center justify-center px-6">
+    <div class="absolute inset-0 bg-[#1D1D1F]/60 backdrop-blur-xl" onclick="closeTechSheet()"></div>
+    
+    <div class="relative bg-white w-full max-w-lg rounded-[40px] p-10 md:p-14 shadow-2xl animate-modal-up">
+        <button onclick="closeTechSheet()" class="absolute top-8 right-8 text-gray-400 hover:text-[#E63946] text-2xl">✕</button>
+        <div id="tech-content">
+            </div>
+    </div>
+</div>
+</body>
 </html>

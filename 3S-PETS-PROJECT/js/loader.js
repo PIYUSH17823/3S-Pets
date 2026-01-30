@@ -23,6 +23,7 @@ async function initSite() {
     await loadComponent('reviews-slot', 'reviews.html');
     await loadComponent('contact-slot', 'contact.html');
     await loadComponent('footer-slot', 'footer.html');
+    await loadComponent('modal-container', 'club-modal.html');
 
     console.log("DOM is ready. Calling renderAll...");
     if (typeof renderAll === "function") {
