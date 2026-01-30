@@ -47,3 +47,26 @@
 #product-title, #product-desc, #product-icon {
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
+
+/* css/catalog.css */
+
+@keyframes modalUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(40px) scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+.animate-modal-up {
+    animation: modalUp 0.6s cubic-bezier(0.2, 1, 0.2, 1) forwards;
+}
+
+/* Ensure the backdrop blur is deep enough */
+.backdrop-blur-xl {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
