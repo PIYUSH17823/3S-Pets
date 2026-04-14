@@ -15,17 +15,18 @@ async function loadComponent(slotId, fileName) {
 }
 
 async function initSite() {
-    // These must match your <div> IDs in index.html exactly
-    await loadComponent('navbar-slot', 'navbar.html');
-    await loadComponent('hero-slot', 'hero.html');
-    await loadComponent('catalog-slot', 'catalog.html');
-    await loadComponent('story-slot', 'story.html');
-    await loadComponent('reviews-slot', 'reviews.html');
-    await loadComponent('contact-slot', 'contact.html');
-    await loadComponent('footer-slot', 'footer.html');
-    await loadComponent('modal-container', 'club-modal.html');
+    // We execute all fetches simultaneously for maximum performance
+    await Promise.all([
+        loadComponent('navbar-slot', 'navbar.html'),
+        loadComponent('hero-slot', 'hero.html'),
+        loadComponent('catalog-slot', 'catalog.html'),
+        loadComponent('story-slot', 'story.html'),
+        loadComponent('reviews-slot', 'reviews.html'),
+        loadComponent('contact-slot', 'contact.html'),
+        loadComponent('footer-slot', 'footer.html')
+    ]);
 
-    console.log("DOM is ready. Calling renderAll...");
+    console.log("DOM is ready. All components fetched concurrently.");
     if (typeof renderAll === "function") {
         renderAll();
     } else {
@@ -33,5 +34,4 @@ async function initSite() {
     }
 }
 
-// Ensure the scripts are fully loaded before starting
 window.addEventListener('load', initSite);
