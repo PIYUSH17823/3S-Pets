@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3S PETS | Happy Pets, Happy Home</title>
+    
+    <!-- SEO & Social Sharing -->
+    <meta name="description" content="Premium pet wellness brand based in Pune. Organic shampoos, nutrient-rich biscuits, and high-performance cat litter.">
+    <meta property="og:title" content="3S PETS | Engineered for the Modern Pet Home">
+    <meta property="og:description" content="Discover our organic, lab-tested pet care collection. Professional salon finish at home.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#E63946">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/catalog.css">
+    <link rel="stylesheet" href="css/story.css">
+    <link rel="stylesheet" href="css/reviews.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body class="bg-[#FFF8F0] text-[#4A4A4A]">
+
+    <div id="navbar-slot"></div>
+    <div id="hero-slot"></div>
+    <div id="catalog-slot"></div>
+    <div id="story-slot"></div>
+    <div id="reviews-slot"></div>
+    <div id="contact-slot"></div>
+    <div id="footer-slot"></div>
+    <div id="modal-container"></div>
+
+
+    <script src="./js/api.js"></script>
+    <script src="./js/render.js"></script>
+    <script src="./js/loader.js"></script>
+
+    <div id="tech-modal" class="fixed inset-0 z-[200] hidden items-center justify-center px-6">
+    <div class="absolute inset-0 bg-[#1D1D1F]/60 backdrop-blur-xl" onclick="closeTechSheet()"></div>
+    
+    <div class="relative bg-white w-full max-w-lg rounded-[40px] p-10 md:p-14 shadow-2xl animate-modal-up">
+        <button onclick="closeTechSheet()" class="absolute top-8 right-8 text-gray-400 hover:text-[#E63946] text-2xl">✕</button>
+        <div id="tech-content">
+            </div>
+    </div>
+</div>
+</body>
+</html>

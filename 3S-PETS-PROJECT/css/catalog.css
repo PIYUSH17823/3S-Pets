@@ -1,0 +1,85 @@
+/* Premium Tabs */
+.cat-tab {
+    padding: 12px 32px;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #888;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cat-tab.active {
+    background: white;
+    color: #1D1D1F;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Navigation Circles */
+.stage-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    z-index: 20;
+    transition: all 0.3s ease;
+}
+
+.stage-nav:hover {
+    background: #1D1D1F;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.animate-float {
+    animation: float 5s ease-in-out infinite;
+}
+
+#product-title, #product-desc, #product-icon {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#product-icon img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.15));
+}
+
+@media (max-width: 768px) {
+    #product-icon img {
+        max-height: 250px;
+    }
+}
+
+/* css/catalog.css */
+
+@keyframes modalUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(40px) scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+.animate-modal-up {
+    animation: modalUp 0.6s cubic-bezier(0.2, 1, 0.2, 1) forwards;
+}
+
+/* Ensure the backdrop blur is deep enough */
+.backdrop-blur-xl {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}

@@ -1,0 +1,46 @@
+/* 1. Global Variables (The "Source of Truth") */
+:root {
+    --brand-cream: #FFF8F0;
+    --brand-red: #E63946;
+    --stage-white: #fffdfb;
+    --text-dark: #1D1D1F;
+}
+
+/* 2. Base Document Rules */
+html {
+    /* This ensures the 'Jump Links' from your Navbar slide smoothly */
+    scroll-behavior: smooth;
+}
+
+body { 
+    font-family: 'Fredoka', sans-serif; 
+    background-color: var(--brand-cream);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+}
+
+/* 3. Utility Components */
+
+/* The Bubbly Background Shape for Product Blobs */
+.blob { 
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; 
+}
+
+/* Standard Section Spacing */
+section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* 4. Scrollbar Styling (Optional: Makes it look more premium) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--brand-cream);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--brand-red);
+    border-radius: 10px;
+}

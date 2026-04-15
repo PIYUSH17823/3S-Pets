@@ -1,0 +1,38 @@
+/* css/hero.css */
+
+@keyframes floatHero {
+    0%, 100% { transform: translateY(0px) rotate(-2deg); }
+    50% { transform: translateY(-30px) rotate(2deg); }
+}
+
+@keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-15px) translateX(10px); }
+}
+
+@keyframes pulseSlow {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.15; transform: scale(1.2); }
+}
+
+.animate-float-hero {
+    animation: floatHero 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+    animation: floatSlow 8s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+    animation: pulseSlow 5s ease-in-out infinite;
+}
+
+/* Subtle gradient for the Hero section to give it depth */
+/* You must add a backslash \ before [, #, and ] */
+section.bg-\[\#FFF8F0\] {
+    background: radial-gradient(circle at top right, #fffdfb, #FFF8F0);
+}
+/* Semantic naming: Much better for your portfolio */
+.hero-stage {
+    background: radial-gradient(circle at top right, var(--stage-white), var(--brand-cream));
+}
