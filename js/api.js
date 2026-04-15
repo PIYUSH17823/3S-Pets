@@ -24,6 +24,21 @@ const ApiService = {
             console.error("ApiService Error:", error);
             throw error;
         }
+    },
+
+    /**
+     * Fetches all products from the backend catalog
+     * @returns {Promise<Object>} The product catalog data
+     */
+    async getProducts() {
+        try {
+            const response = await fetch(`${API_BASE_URL}/products`);
+            if (!response.ok) throw new Error('Failed to fetch products');
+            return await response.json();
+        } catch (error) {
+            console.error("ApiService Product Error:", error);
+            throw error;
+        }
     }
 };
 
