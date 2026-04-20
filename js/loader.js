@@ -28,7 +28,7 @@ async function initSite() {
 
     console.log("DOM is ready. All components fetched concurrently.");
     if (typeof renderAll === "function") {
-        renderAll();
+        await renderAll();
     } else {
         console.error("renderAll is not defined! Check render.js");
     }

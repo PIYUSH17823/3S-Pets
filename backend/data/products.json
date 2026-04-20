@@ -1,0 +1,113 @@
+{
+  "Shampoo": [
+    {
+      "title": "Dry Bath (DOVE)",
+      "tag": "Instant Cleanse",
+      "image": "assets/shampoo/dry-bath.png",
+      "glow": "#FFF8F0",
+      "desc": "The ultimate waterless solution for a quick refresh without the stress of a bath.",
+      "specs": {
+        "Type": "Waterless",
+        "Key Benefit": "Quick Refresh",
+        "Scent": "Soft Dove",
+        "Safety": "PH Balanced"
+      }
+    },
+    {
+      "title": "Oatmeal Silk Protein",
+      "tag": "Hydrating Formula",
+      "image": "assets/shampoo/oatmeal-silk.png",
+      "glow": "#FFD1D1",
+      "desc": "Enriched with silk protein and oatmeal for deep hydration and a majestic shine.",
+      "specs": {
+        "Key Ingredient": "Oatmeal",
+        "Conditioner": "Built-in",
+        "Benefit": "Silk Texture",
+        "Size": "Professional"
+      }
+    },
+    {
+      "title": "Puppy Shampoo",
+      "tag": "Gentle & Tear-Free",
+      "image": "assets/shampoo/puppy-shampoo.png",
+      "glow": "#D1E8FF",
+      "desc": "A mild, tear-free formula designed specifically for the sensitive skin of young pups.",
+      "specs": {
+        "Age Group": "Puppies",
+        "Tear Free": "Yes",
+        "Conditioner": "Built-in",
+        "Skin Type": "Sensitive"
+      }
+    },
+    {
+      "title": "Anti Hair Fall",
+      "tag": "Strength & Repair",
+      "image": "assets/shampoo/anti-hairfall.png",
+      "glow": "#FFE4D1",
+      "desc": "Clinical-strength formula to reduce shedding and strengthen hair from the roots.",
+      "specs": {
+        "Target": "Shedding Control",
+        "Conditioner": "Built-in",
+        "Formula": "Pro-V Strength",
+        "Effect": "Root Repair"
+      }
+    },
+    {
+      "title": "Kitten Cat Shampoo",
+      "tag": "Feline Care",
+      "image": "assets/shampoo/kitten-cat.png",
+      "glow": "#E4D1FF",
+      "desc": "Specifically formulated for felines, maintaining the perfect pH level for cat skin.",
+      "specs": {
+        "Target Pet": "Cats/Kittens",
+        "Conditioner": "Built-in",
+        "pH Level": "Balanced",
+        "Scent": "Cat-Friendly"
+      }
+    }
+  ],
+  "Biscuits": [
+    {
+      "title": "Crunchy Hearts",
+      "tag": "Daily Nutrition",
+      "icon": "🦴",
+      "glow": "#FFE4D1",
+      "desc": "Slow-baked protein hearts designed for dental health and high-reward training.",
+      "specs": {
+        "Protein": "24% Min",
+        "Calorie": "8 kcal/treat",
+        "Grain": "Zero Grain",
+        "Hardness": "Dental Grade"
+      }
+    },
+    {
+      "title": "Vitality Bites",
+      "tag": "Superfood Blend",
+      "icon": "🥕",
+      "glow": "#D1FFD7",
+      "desc": "Rich in antioxidants and fiber to support digestion in active breeds.",
+      "specs": {
+        "Fiber": "12% Max",
+        "Superfood": "Real Carrots",
+        "Digestion": "Probiotic Blend",
+        "Vitamins": "A, E, and Omega-3"
+      }
+    }
+  ],
+  "Cat Litter": [
+    {
+      "title": "Bentonite Premium",
+      "tag": "Next-Gen Odor Control",
+      "image": "assets/litter/litter-front.png",
+      "glow": "#D1FFD7",
+      "desc": "Bentonite premium cat litter with fast-clumping technology and low-dust formula for a clean home.",
+      "specs": {
+        "Base": "Natural Bentonite",
+        "Clumping": "Fast-Action",
+        "Weight Status": "5kg / 10kg",
+        "Dust Level": "Low Dust",
+        "Scents": "Lavender, Lemon, Rose"
+      }
+    }
+  ]
+}

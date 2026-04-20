@@ -1,5 +1,7 @@
 // --- 1. THE MODEL (Data) ---
-const catalogModel = {
+
+// Offline fallback data — ensures the site works even without a backend.
+const OFFLINE_FALLBACK = {
     "Shampoo": [
         {
             title: "Dry Bath (DOVE)", tag: "Instant Cleanse", image: "assets/shampoo/dry-bath.png", glow: "#FFF8F0",
@@ -41,12 +43,14 @@ const catalogModel = {
     ],
     "Cat Litter": [
         {
-            title: "Carbon-Lock Crystals", tag: "Odor Control", icon: "💎", glow: "#E4D1FF",
-            desc: "Next-gen silica crystals with activated charcoal for 30-day freshness.",
-            specs: { "Material": "Activated Silica", "Odor Control": "30-Day Guard", "Dust Level": "99.9% Dust Free", "Clumping": "Instant Lock" }
+            "title": "Bentonite Premium", "tag": "Next-Gen Odor Control", "image": "assets/litter/litter-front.png", "glow": "#D1FFD7",
+            "desc": "Bentonite premium cat litter with fast-clumping technology and low-dust formula for a clean home.",
+            "specs": { "Base": "Natural Bentonite", "Clumping": "Fast-Action", "Weight Status": "5kg / 10kg", "Dust Level": "Low Dust", "Scents": "Lavender, Lemon, Rose" }
         }
     ]
 };
+
+let catalogModel = OFFLINE_FALLBACK; // Initialize with fallback
 
 const reviewData = [
     { user: "Sarah Montgomery", pet: "Luna • Siberian Husky", text: "The transition to Silk-Finish was seamless. Her coat has a natural luster I haven't seen with other organic brands.", rating: 5, type: "Verified Owner" },
@@ -61,6 +65,13 @@ let activeIdx = 0;
 // --- 3. THE CONTROLLER (Logic) ---
 
 function renderCatalog() {
+    // Safety check: Ensure the category and product exist
+    if (!catalogModel[activeCat] || !catalogModel[activeCat][activeIdx]) {
+        console.warn(`Catalog data not found for ${activeCat}[${activeIdx}]. Retrying with first product.`);
+        activeIdx = 0;
+        if (!catalogModel[activeCat]) return;
+    }
+
     const data = catalogModel[activeCat][activeIdx];
     const title = document.getElementById('product-title');
     const desc = document.getElementById('product-desc');
@@ -78,7 +89,11 @@ function renderCatalog() {
         
         // Handle images vs icons
         if (data.image) {
-            icon.innerHTML = `<img src="${data.image}" class="w-full h-full object-contain animate-fade-in" alt="${data.title}">`;
+            const isLitter = activeCat === "Cat Litter";
+            icon.innerHTML = `<img src="${data.image}" 
+                class="w-full h-full object-contain animate-fade-in ${isLitter ? 'scale-[1.4]' : 'scale-110'}" 
+                style="transform-origin: bottom center;" 
+                alt="${data.title}">`;
         } else {
             icon.innerText = data.icon;
         }
@@ -87,7 +102,7 @@ function renderCatalog() {
         if (glow) glow.style.backgroundColor = data.glow;
 
         [title, desc, icon].forEach(el => el.style.opacity = 1);
-    }, 300);
+    }, 100);
 
     document.querySelectorAll('.cat-tab').forEach(tab => {
         tab.classList.toggle('active', tab.innerText === activeCat || (activeCat === "Cat Litter" && tab.innerText === "Litter"));
@@ -96,6 +111,8 @@ function renderCatalog() {
 
 window.openTechSheet = () => {
     const data = catalogModel[activeCat][activeIdx];
+    if (!data) return;
+
     const modal = document.getElementById('tech-modal');
     const content = document.getElementById('tech-content');
 
@@ -207,7 +224,6 @@ async function initContactForm() {
 
         } catch (error) {
             console.error("3S Backend Error:", error);
-            // Show more detailed error for troubleshooting
             const errorMsg = error.message || "Unknown Connection Error";
             alert(`Connection failed: ${errorMsg}. Please ensure your backend is running at http://localhost:8080`);
             submitBtn.disabled = false;
@@ -218,12 +234,42 @@ async function initContactForm() {
 }
 
 // --- 4. THE MASTER TRIGGER ---
-function renderAll() {
-    renderCatalog();
-    renderReviews();
-    initContactForm();
+async function renderAll() {
+    try {
+        // Fetch products from backend to update the local model
+        const liveData = await ApiService.getProducts();
+        if (liveData && Object.keys(liveData).length > 0) {
+            catalogModel = liveData;
+            console.log("3S Catalog synced with Backend API.");
+        }
+    } catch (error) {
+        console.warn("Backend offline. Using local OFFLINE_FALLBACK catalog.");
+    } finally {
+        // Always render, whether we have live data or fallback
+        renderCatalog();
+        renderReviews();
+        initContactForm();
+    }
 }
 
-window.changeCategory = (c) => { activeCat = c; activeIdx = 0; renderCatalog(); };
-window.nextProduct = () => { activeIdx = (activeIdx + 1) % catalogModel[activeCat].length; renderCatalog(); };
-window.prevProduct = () => { activeIdx = (activeIdx - 1 + catalogModel[activeCat].length) % catalogModel[activeCat].length; renderCatalog(); };
+window.changeCategory = (c) => { 
+    if (catalogModel[c]) {
+        activeCat = c; 
+        activeIdx = 0; 
+        renderCatalog(); 
+    }
+};
+
+window.nextProduct = () => { 
+    if (catalogModel[activeCat]) {
+        activeIdx = (activeIdx + 1) % catalogModel[activeCat].length; 
+        renderCatalog(); 
+    }
+};
+
+window.prevProduct = () => { 
+    if (catalogModel[activeCat]) {
+        activeIdx = (activeIdx - 1 + catalogModel[activeCat].length) % catalogModel[activeCat].length; 
+        renderCatalog(); 
+    }
+};

@@ -1,0 +1,30 @@
+<div id="club-modal" class="fixed inset-0 z-[1000] hidden items-center justify-center bg-[#1D1D1F]/90 backdrop-blur-xl p-6">
+    <div class="bg-white w-full max-w-lg rounded-[40px] p-10 relative animate-fade-in shadow-2xl">
+        <button onclick="closeClubModal()" class="absolute top-6 right-6 text-gray-400 hover:text-[#E63946] text-2xl">✕</button>
+        
+        <div class="text-center mb-8">
+            <span class="bg-[#FFF0F1] text-[#E63946] px-4 py-1 rounded-full text-[10px] font-black tracking-widest uppercase">Member Access</span>
+            <h2 class="text-3xl font-black mt-4 tracking-tighter text-[#1D1D1F]">Join the 3S Inner Circle.</h2>
+            <p class="text-gray-500 text-sm mt-2">Get exclusive grooming tips and member-only rewards.</p>
+        </div>
+
+        <form id="club-form" class="space-y-6">
+            <div class="space-y-1">
+                <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Full Name</label>
+                <input type="text" id="club-name" placeholder="Piyush Mahale" class="w-full bg-gray-50 border-none rounded-2xl p-4 text-sm focus:ring-2 focus:ring-[#E63946]" required>
+            </div>
+            <div class="space-y-1">
+                <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Mobile Number</label>
+                <input type="tel" id="club-mobile" placeholder="+91 98765 43210" class="w-full bg-gray-50 border-none rounded-2xl p-4 text-sm focus:ring-2 focus:ring-[#E63946]" required>
+            </div>
+            <div class="space-y-1">
+                <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Email Address</label>
+                <input type="email" id="club-email" placeholder="piyush@example.com" class="w-full bg-gray-50 border-none rounded-2xl p-4 text-sm focus:ring-2 focus:ring-[#E63946]" required>
+            </div>
+
+            <button type="submit" class="w-full bg-[#E63946] text-white py-5 rounded-2xl font-bold text-lg hover:shadow-xl transition-all">
+                Apply for Membership 🐾
+            </button>
+        </form>
+    </div>
+</div>
