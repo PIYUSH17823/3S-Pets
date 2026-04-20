@@ -30,15 +30,35 @@ const OFFLINE_FALLBACK = {
         }
     ],
     "Biscuits": [
+        // {
+        //     title: "Crunchy Hearts", tag: "Daily Nutrition", icon: "🦴", glow: "#FFE4D1",
+        //     desc: "Slow-baked protein hearts designed for dental health and high-reward training.",
+        //     specs: { "Protein": "24% Min", "Calorie": "8 kcal/treat", "Grain": "Zero Grain", "Hardness": "Dental Grade" }
+        // },
+        // {
+        //     title: "Vitality Bites", tag: "Superfood Blend", icon: "🥕", glow: "#D1FFD7",
+        //     desc: "Rich in antioxidants and fiber to support digestion in active breeds.",
+        //     specs: { "Fiber": "12% Max", "Superfood": "Real Carrots", "Digestion": "Probiotic Blend", "Vitamins": "A, E, and Omega-3" }
+        // },
         {
-            title: "Crunchy Hearts", tag: "Daily Nutrition", icon: "🦴", glow: "#FFE4D1",
-            desc: "Slow-baked protein hearts designed for dental health and high-reward training.",
-            specs: { "Protein": "24% Min", "Calorie": "8 kcal/treat", "Grain": "Zero Grain", "Hardness": "Dental Grade" }
+            title: "Premium Cheese Treats", tag: "Calcium Rich", image: "assets/biscuits/cheese-biscuit.png", glow: "#FFF8E1",
+            desc: "Delicious oven-baked cheese bites that provide a calcium boost while satisfying your pet's cravings.",
+            specs: { "Protein": "18%", "Fat": "12%", "Calcium": "1.5%", "Shape": "Bone" }
         },
         {
-            title: "Vitality Bites", tag: "Superfood Blend", icon: "🥕", glow: "#D1FFD7",
-            desc: "Rich in antioxidants and fiber to support digestion in active breeds.",
-            specs: { "Fiber": "12% Max", "Superfood": "Real Carrots", "Digestion": "Probiotic Blend", "Vitamins": "A, E, and Omega-3" }
+            title: "Classic Chicken Crunch", tag: "High Protein", image: "assets/biscuits/chicken-biscuit.png", glow: "#FFF3E0",
+            desc: "Pure chicken breast infused biscuits, perfect for muscle growth and high-energy play sessions.",
+            specs: { "Protein": "28%", "Real Chicken": "40%", "Digestibility": "95%", "For": "All Breeds" }
+        },
+        {
+            title: "Savory Meat Delights", tag: "Meaty Goodness", image: "assets/biscuits/meat-biscuit.png", glow: "#FBE9E7",
+            desc: "A hearty blend of beef and lamb extracts, providing a rich savory flavor that pets find irresistible.",
+            specs: { "Protein": "26%", "Flavor": "Beef & Lamb", "Grain Free": "Yes", "Iron": "High" }
+        },
+        {
+            title: "Power-4 Super Treats", tag: "Multivitamin Boost", image: "assets/biscuits/mixed-biscuit.png", glow: "#F3E5F5",
+            desc: "The ultimate nutritional powerhouse combining chicken, red meat, liver, and eggs for a complete snack.",
+            specs: { "Ingredients": "4-in-1", "Vitamins": "A, D, E, B12", "Energy": "High", "Health": "Skin & Coat" }
         }
     ],
     "Cat Litter": [
@@ -86,7 +106,7 @@ function renderCatalog() {
     setTimeout(() => {
         title.innerText = data.title;
         desc.innerText = data.desc;
-        
+
         // Handle images vs icons
         if (data.image) {
             const isLitter = activeCat === "Cat Litter";
@@ -212,7 +232,7 @@ async function initContactForm() {
 
             submitBtn.innerText = "Pawsome! Received 🐾";
             submitBtn.classList.replace('bg-[#E63946]', 'bg-green-500');
-            
+
             setTimeout(() => {
                 alert(`Success! Your query is registered (ID: ${result.id}). The 3S PETS team will reach out shortly.`);
                 form.reset();
@@ -252,24 +272,24 @@ async function renderAll() {
     }
 }
 
-window.changeCategory = (c) => { 
+window.changeCategory = (c) => {
     if (catalogModel[c]) {
-        activeCat = c; 
-        activeIdx = 0; 
-        renderCatalog(); 
+        activeCat = c;
+        activeIdx = 0;
+        renderCatalog();
     }
 };
 
-window.nextProduct = () => { 
+window.nextProduct = () => {
     if (catalogModel[activeCat]) {
-        activeIdx = (activeIdx + 1) % catalogModel[activeCat].length; 
-        renderCatalog(); 
+        activeIdx = (activeIdx + 1) % catalogModel[activeCat].length;
+        renderCatalog();
     }
 };
 
-window.prevProduct = () => { 
+window.prevProduct = () => {
     if (catalogModel[activeCat]) {
-        activeIdx = (activeIdx - 1 + catalogModel[activeCat].length) % catalogModel[activeCat].length; 
-        renderCatalog(); 
+        activeIdx = (activeIdx - 1 + catalogModel[activeCat].length) % catalogModel[activeCat].length;
+        renderCatalog();
     }
 };
