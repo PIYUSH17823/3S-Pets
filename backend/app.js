@@ -14,22 +14,45 @@ const PORT = process.env.PORT || 8080;
 app.use(helmet());
 
 // Cross-Origin Resource Sharing (CORS) Security
-// Relaxed for local testing; tighten this back up for production launch.
-app.use(cors());
+const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : [];
+app.use(cors({
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV !== 'production') {
+            callback(null, true);
+        } else {
+            callback(new Error('Go away! CORS policy violation.'));
+        }
+    }
+}));
 
 // Rate Limiting (Spam Protection)
-// Max 5 contact form submissions per IP every 15 minutes.
-const apiLimiter = rateLimit({
+// General API limiter: 100 requests per 15 minutes
+const generalLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, 
+    max: 100, 
+    message: { error: 'Too many requests from this IP, please try again later.' }
+});
+
+// Strict limiter for contact form only: 5 submissions per 15 minutes
+const enquiryLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, 
     max: 5, 
-    message: { error: 'Too many requests from this IP, please try again after 15 minutes.' }
+    message: { error: 'Too many enquiries sent. Please wait 15 minutes.' }
 });
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-// Apply rate limiter specifically to our primary API routes
-app.use('/api/v1', apiLimiter, apiRoutes);
+// Apply general limiter to all API routes
+app.use('/api/v1', generalLimiter);
+
+// Apply strict limiter ONLY to the enquiry submission
+app.use('/api/v1/enquiry', enquiryLimiter);
+
+// Register routes
+app.use('/api/v1', apiRoutes);
 
 // Health Check
 app.get('/', (req, res) => {

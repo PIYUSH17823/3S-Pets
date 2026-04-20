@@ -1,0 +1,12 @@
+# www.robotstxt.org/
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Prevent indexing of the future admin portal
+Disallow: /admin
+Disallow: /api/v1/admin
+
+# Sitemap location
+Sitemap: https://threesspets.com/sitemap.xml

@@ -1,5 +1,7 @@
 // js/api.js
-const API_BASE_URL = 'http://localhost:8080/api/v1';
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:8080/api/v1'
+    : 'https://threesspets.com/api/v1';
 
 const ApiService = {
     /**
@@ -37,6 +39,74 @@ const ApiService = {
             return await response.json();
         } catch (error) {
             console.error("ApiService Product Error:", error);
+            throw error;
+        }
+    },
+
+    /**
+     * Fetches all reviews from the backend
+     * @returns {Promise<Array>} The review data array
+     */
+    async getReviews() {
+        try {
+            const response = await fetch(`${API_BASE_URL}/reviews`);
+            if (!response.ok) throw new Error('Failed to fetch reviews');
+            return await response.json();
+        } catch (error) {
+            console.error("ApiService Review Error:", error);
+            // Fallback to null so the renderer can use local data if needed
+            return null;
+        }
+    },
+
+    /**
+     * Submits a new review for approval
+     */
+    async submitReview(reviewData) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/reviews/submit`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(reviewData)
+            });
+            if (!response.ok) throw new Error('Submission failed');
+            return await response.json();
+        } catch (error) {
+            console.error("Submission error:", error);
+            throw error;
+        }
+    },
+
+    /**
+     * Fetches all reviews for admin manager
+     */
+    async getAdminReviews(password) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/admin/reviews`, {
+                headers: { 'x-admin-pass': password }
+            });
+            if (!response.ok) throw new Error('Auth failed');
+            return await response.json();
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Updates review status (approve/delete)
+     */
+    async updateReviewStatus(password, reviewId, action) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/admin/reviews/action`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'x-admin-pass': password 
+                },
+                body: JSON.stringify({ id: reviewId, action })
+            });
+            return await response.json();
+        } catch (error) {
             throw error;
         }
     }

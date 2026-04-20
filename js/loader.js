@@ -15,22 +15,32 @@ async function loadComponent(slotId, fileName) {
 }
 
 async function initSite() {
-    // We execute all fetches simultaneously for maximum performance
-    await Promise.all([
-        loadComponent('navbar-slot', 'navbar.html'),
-        loadComponent('hero-slot', 'hero.html'),
-        loadComponent('catalog-slot', 'catalog.html'),
-        loadComponent('story-slot', 'story.html'),
-        loadComponent('reviews-slot', 'reviews.html'),
-        loadComponent('contact-slot', 'contact.html'),
-        loadComponent('footer-slot', 'footer.html')
-    ]);
+    try {
+        // We execute all fetches simultaneously for maximum performance
+        await Promise.all([
+            loadComponent('navbar-slot', 'navbar.html'),
+            loadComponent('hero-slot', 'hero.html'),
+            loadComponent('catalog-slot', 'catalog.html'),
+            loadComponent('story-slot', 'story.html'),
+            loadComponent('reviews-slot', 'reviews.html'),
+            loadComponent('contact-slot', 'contact.html'),
+            loadComponent('footer-slot', 'footer.html'),
+            loadComponent('modal-container', 'admin.html')
+        ]);
 
-    console.log("DOM is ready. All components fetched concurrently.");
-    if (typeof renderAll === "function") {
-        await renderAll();
-    } else {
-        console.error("renderAll is not defined! Check render.js");
+        console.log("DOM is ready. All components fetched concurrently.");
+        
+        if (typeof renderAll === "function") {
+            await renderAll();
+            // Final Premium initialization:
+            if (typeof initScrollReveal === "function") {
+                initScrollReveal();
+            }
+        } else {
+            console.error("renderAll is not defined! Check render.js");
+        }
+    } catch (err) {
+        console.error("Initialization Error:", err);
     }
 }
 

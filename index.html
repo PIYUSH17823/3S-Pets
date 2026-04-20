@@ -43,13 +43,54 @@
     <script src="./js/loader.js"></script>
 
     <div id="tech-modal" class="fixed inset-0 z-[200] hidden items-center justify-center px-6">
-    <div class="absolute inset-0 bg-[#1D1D1F]/60 backdrop-blur-xl" onclick="closeTechSheet()"></div>
-    
-    <div class="relative bg-white w-full max-w-lg rounded-[40px] p-10 md:p-14 shadow-2xl animate-modal-up">
-        <button onclick="closeTechSheet()" class="absolute top-8 right-8 text-gray-400 hover:text-[#E63946] text-2xl">✕</button>
-        <div id="tech-content">
-            </div>
+        <div class="absolute inset-0 bg-[#1D1D1F]/60 backdrop-blur-xl" onclick="closeTechSheet()"></div>
+        <div class="relative bg-white w-full max-w-lg rounded-[40px] p-10 md:p-14 shadow-2xl animate-modal-up">
+            <button onclick="closeTechSheet()" class="absolute top-8 right-8 text-gray-400 hover:text-[#E63946] text-2xl">✕</button>
+            <div id="tech-content"></div>
+        </div>
     </div>
-</div>
+
+    <!-- Review Submission Modal -->
+    <div id="review-modal" class="fixed inset-0 z-[200] hidden items-center justify-center px-6">
+        <div class="absolute inset-0 bg-[#1D1D1F]/60 backdrop-blur-xl" onclick="closeReviewModal()"></div>
+        <div class="relative bg-white w-full max-w-lg rounded-[40px] p-10 md:p-14 shadow-2xl animate-modal-up">
+            <button onclick="closeReviewModal()" class="absolute top-8 right-8 text-gray-400 hover:text-[#E63946] text-2xl">✕</button>
+            <div class="space-y-8">
+                <div>
+                    <h2 class="text-3xl font-bold tracking-tighter">Share Your Story.</h2>
+                    <p class="text-[#E63946] font-bold text-[10px] tracking-[0.2em] uppercase">Customer Review</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase text-gray-400 tracking-widest">Your Rating</span>
+                        <div id="star-rating" class="flex gap-1 text-2xl">
+                            <span onclick="setRating(1)" class="star-btn cursor-pointer text-gray-200 hover:text-yellow-400 transition-all">★</span>
+                            <span onclick="setRating(2)" class="star-btn cursor-pointer text-gray-200 hover:text-yellow-400 transition-all">★</span>
+                            <span onclick="setRating(3)" class="star-btn cursor-pointer text-gray-200 hover:text-yellow-400 transition-all">★</span>
+                            <span onclick="setRating(4)" class="star-btn cursor-pointer text-gray-200 hover:text-yellow-400 transition-all">★</span>
+                            <span onclick="setRating(5)" class="star-btn cursor-pointer text-gray-200 hover:text-yellow-400 transition-all">★</span>
+                        </div>
+                    </div>
+                    <input type="text" id="rev-name" placeholder="Your Name" class="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#E63946] transition-all">
+                    <input type="text" id="rev-pet" placeholder="Pet Name & Breed" class="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#E63946] transition-all">
+                    <textarea id="rev-text" placeholder="Tell us about your experience..." rows="4" class="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#E63946] transition-all"></textarea>
+                </div>
+                <button onclick="submitUserReview()" class="w-full bg-[#1D1D1F] text-white py-5 rounded-3xl font-bold hover:bg-[#E63946] transition-all shadow-xl">Submit Review</button>
+            </div>
+        </div>
+    </div>
+    <!-- Catalogue Brochure Viewer -->
+    <div id="brochure-viewer" class="fixed inset-0 z-[250] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-[#1D1D1F]/95 backdrop-blur-2xl" onclick="closeBrochure()"></div>
+        <div class="relative flex items-center justify-center p-4 w-full h-full pointer-events-none">
+            <div class="fixed top-8 right-8 z-[260] flex gap-3 pointer-events-auto">
+                <button onclick="toggleBrochureZoom()" title="Toggle Zoom" class="bg-white/10 hover:bg-[#E63946] text-white w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-md transition-all text-xl">🔍</button>
+                <button onclick="closeBrochure()" title="Close" class="bg-white/10 hover:bg-[#E63946] text-white w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-md transition-all text-xl">✕</button>
+            </div>
+            <div id="brochure-container" class="relative max-w-full max-h-full animate-modal-up pointer-events-auto overflow-auto rounded-[32px] shadow-2xl">
+                <img id="brochure-img" src="" class="max-w-full max-h-[85vh] w-auto h-auto block rounded-[32px] transition-all duration-300" alt="Catalogue Brochure">
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -2,67 +2,86 @@
   "Shampoo": [
     {
       "title": "Dry Bath (DOVE)",
-      "tag": "Instant Cleanse",
+      "tag": "Ayurvedic Waterless",
       "image": "assets/shampoo/dry-bath.png",
       "glow": "#FFF8F0",
-      "desc": "The ultimate waterless solution for a quick refresh without the stress of a bath.",
+      "desc": "An Ayurvedic waterless solution featuring Brahmi and Kohala for a quick, stress-free refresh.",
+      "brochure": "assets/descriptions/3S Pets All Product Catalouge_6.jpg.jpeg",
       "specs": {
-        "Type": "Waterless",
-        "Key Benefit": "Quick Refresh",
-        "Scent": "Soft Dove",
-        "Safety": "PH Balanced"
+        "Key Ingredients": "Brahmi, Kohala, Yashtimadhu",
+        "Type": "Waterless Spray",
+        "Sizes": "200 ml",
+        "Benefit": "Water Conservation"
       }
     },
     {
       "title": "Oatmeal Silk Protein",
-      "tag": "Hydrating Formula",
+      "tag": "Hydrating Ritual",
       "image": "assets/shampoo/oatmeal-silk.png",
       "glow": "#FFD1D1",
-      "desc": "Enriched with silk protein and oatmeal for deep hydration and a majestic shine.",
+      "desc": "Enriched with silk protein, oats, and Manjishta for deep hydration and improved elasticity.",
+      "brochure": "assets/descriptions/3S Pets All Product Catalouge_3.jpg.jpeg",
       "specs": {
-        "Key Ingredient": "Oatmeal",
+        "Key Ingredients": "Oats, Silk Protein, Manjishta",
         "Conditioner": "Built-in",
-        "Benefit": "Silk Texture",
-        "Size": "Professional"
+        "Sizes": "100, 200, 500, 1000, 5000 ml",
+        "Benefit": "Reduced Allergies"
       }
     },
     {
       "title": "Puppy Shampoo",
-      "tag": "Gentle & Tear-Free",
+      "tag": "Tear-Free Spa",
       "image": "assets/shampoo/puppy-shampoo.png",
       "glow": "#D1E8FF",
-      "desc": "A mild, tear-free formula designed specifically for the sensitive skin of young pups.",
+      "desc": "A luxurious pet spa experience featuring Milk Protein and Amla for sensitive puppy skin.",
+      "brochure": "assets/descriptions/3S Pets All Product Catalouge.jpg.jpeg",
       "specs": {
-        "Age Group": "Puppies",
+        "Key Ingredients": "Milk Protein, Kohala, Amla",
         "Tear Free": "Yes",
-        "Conditioner": "Built-in",
-        "Skin Type": "Sensitive"
+        "Sizes": "100, 200, 500, 1000 ml",
+        "Benefit": "Enhanced Coat Quality"
       }
     },
     {
       "title": "Anti Hair Fall",
-      "tag": "Strength & Repair",
+      "tag": "Root Strengthening",
       "image": "assets/shampoo/anti-hairfall.png",
       "glow": "#FFE4D1",
-      "desc": "Clinical-strength formula to reduce shedding and strengthen hair from the roots.",
+      "desc": "Clinical Ayurvedic formula with Keratin and Almond protein to reduce shedding and root-repair.",
+      "brochure": "assets/descriptions/3S Pets All Product Catalouge_4.jpg.jpeg",
       "specs": {
-        "Target": "Shedding Control",
-        "Conditioner": "Built-in",
-        "Formula": "Pro-V Strength",
-        "Effect": "Root Repair"
+        "Key Ingredients": "Amla, Almond Protein, Keratin",
+        "Formula": "Strength & Repair",
+        "Sizes": "100, 200, 500, 1000, 5000 ml",
+        "Effect": "Shedding Control"
       }
     },
     {
       "title": "Kitten Cat Shampoo",
-      "tag": "Feline Care",
+      "tag": "Feline Wellness",
       "image": "assets/shampoo/kitten-cat.png",
       "glow": "#E4D1FF",
-      "desc": "Specifically formulated for felines, maintaining the perfect pH level for cat skin.",
+      "desc": "Specifically formulated for cats with Yazhtimadhu and Shatavari to maintain pH balance.",
+      "brochure": "assets/descriptions/3S Pets All Product Catalouge_2.jpg.jpeg",
       "specs": {
-        "Target Pet": "Cats/Kittens",
-        "Conditioner": "Built-in",
+        "Key Ingredients": "Shatavari, Yashtimadhu, Silk",
         "pH Level": "Balanced",
-        "Scent": "Cat-Friendly"
+        "Sizes": "100, 200 ml",
+        "Benefit": "Reduced Allergies"
+      }
+    },
+    {
+      "title": "4-IN-1 Shampoo",
+      "tag": "Holistic Healing",
+      "image": "assets/shampoo/shampoo3.png",
+      "glow": "#FFF8F0",
+      "desc": "A powerhouse formula with Curcumin and Turmeric to combat itching, dandruff, and scabs.",
+      "brochure": "assets/descriptions/3S Pets All Product Catalouge_5.jpg.jpeg",
+      "specs": {
+        "Key Ingredients": "Curcumin, Turmeric, Shikakai",
+        "Defense": "Anti-Fungal/Itch",
+        "Sizes": "100, 200, 500, 1000, 5000 ml",
+        "Benefit": "Deep Healing"
       }
     }
   ],
@@ -77,7 +96,7 @@
         "Protein": "18%",
         "Fat": "12%",
         "Calcium": "1.5%",
-        "Shape": "Square"
+        "Type": "Oven Baked"
       }
     },
     {
@@ -90,49 +109,23 @@
         "Protein": "28%",
         "Real Chicken": "40%",
         "Digestibility": "95%",
-        "For": "All Breeds"
-      }
-    },
-    {
-      "title": "Savory Meat Delights",
-      "tag": "Meaty Goodness",
-      "image": "assets/biscuits/meat-biscuit.png",
-      "glow": "#FBE9E7",
-      "desc": "A hearty blend of beef and lamb extracts, providing a rich savory flavor that pets find irresistible.",
-      "specs": {
-        "Protein": "26%",
-        "Flavor": "Beef & Lamb",
-        "Grain Free": "Yes",
-        "Iron": "High"
-      }
-    },
-    {
-      "title": "Power-4 Super Treats",
-      "tag": "Multivitamin Boost",
-      "image": "assets/biscuits/mixed-biscuit.png",
-      "glow": "#F3E5F5",
-      "desc": "The ultimate nutritional powerhouse combining chicken, red meat, liver, and eggs for a complete snack.",
-      "specs": {
-        "Ingredients": "4-in-1",
-        "Vitamins": "A, D, E, B12",
-        "Energy": "High",
-        "Health": "Skin & Coat"
+        "Pet Type": "All Breeds"
       }
     }
   ],
   "Cat Litter": [
     {
-      "title": "Bentonite Premium",
-      "tag": "Next-Gen Odor Control",
+      "title": "Premium Bentonite",
+      "tag": "Odor-Free Clamping",
       "image": "assets/litter/litter-front.png",
       "glow": "#D1FFD7",
-      "desc": "Bentonite premium cat litter with fast-clumping technology and low-dust formula for a clean home.",
+      "desc": "Superior clumping Bentonite mineral with Lavender and Lemon scents for an odor-free home.",
+      "brochure": "assets/descriptions/3S Pets All Product Catalouge_7.jpg.jpeg",
       "specs": {
         "Base": "Natural Bentonite",
-        "Clumping": "Fast-Action",
-        "Weight Status": "5kg / 10kg",
-        "Dust Level": "Low Dust",
-        "Scents": "Lavender, Lemon, Rose"
+        "Sizes": "5kg, 10kg, 25kg",
+        "Features": "Low Dust, Anti-Spread",
+        "Clumping": "Fast-Action"
       }
     }
   ]

@@ -72,7 +72,7 @@ const OFFLINE_FALLBACK = {
 
 let catalogModel = OFFLINE_FALLBACK; // Initialize with fallback
 
-const reviewData = [
+let reviewsData = [
     { user: "Sarah Montgomery", pet: "Luna • Siberian Husky", text: "The transition to Silk-Finish was seamless. Her coat has a natural luster I haven't seen with other organic brands.", rating: 5, type: "Verified Owner" },
     { user: "Rahul Kulkarni", pet: "Bruno • Golden Retriever", text: "Being in Pune, the dust is a real issue. The Active Protect formula keeps him fresh for days.", rating: 5, type: "Verified Owner" },
     { user: "Emma Watson", pet: "Misty • Persian Cat", text: "The Carbon-Lock crystals are a game changer for apartment living. 30 days of freshness is a reality.", rating: 5, type: "Verified Owner" }
@@ -110,18 +110,28 @@ function renderCatalog() {
         // Handle images vs icons
         if (data.image) {
             const isLitter = activeCat === "Cat Litter";
-            icon.innerHTML = `<img src="${data.image}" 
-                class="w-full h-full object-contain animate-fade-in ${isLitter ? 'scale-[1.4]' : 'scale-110'}" 
-                style="transform-origin: bottom center;" 
-                alt="${data.title}">`;
+            icon.classList.add('skeleton'); // Add loading pulse
+            
+            const img = new Image();
+            img.src = data.image;
+            img.onload = () => {
+                icon.classList.remove('skeleton'); // Remove pulse when loaded
+                icon.innerHTML = `<img src="${data.image}" 
+                    class="w-full h-full object-contain animate-fade-in ${isLitter ? 'scale-[1.4]' : 'scale-110'}" 
+                    style="transform-origin: bottom center;" 
+                    alt="${data.title}">`;
+                icon.style.opacity = 1;
+            };
         } else {
+            icon.classList.remove('skeleton');
             icon.innerText = data.icon;
+            icon.style.opacity = 1;
         }
 
         tag.innerText = data.tag;
         if (glow) glow.style.backgroundColor = data.glow;
 
-        [title, desc, icon].forEach(el => el.style.opacity = 1);
+        [title, desc].forEach(el => el.style.opacity = 1);
     }, 100);
 
     document.querySelectorAll('.cat-tab').forEach(tab => {
@@ -145,16 +155,24 @@ window.openTechSheet = () => {
         </div>
     `).join('');
 
+    const brochureBtn = data.brochure ? `
+        <button onclick="openBrochure('${data.brochure}')" class="w-full mt-6 bg-[#1D1D1F] text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#E63946] transition-all group">
+            <span>Explore Full Brochure</span>
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </button>
+    ` : '';
+
     content.innerHTML = `
         <div class="space-y-8">
             <div class="flex items-center gap-6">
-                <div class="text-6xl bg-[#FFF8F0] w-24 h-24 flex items-center justify-center rounded-[30px]">${data.image ? `<img src="${data.image}" class="w-full h-full object-contain">` : data.icon}</div>
+                <div class="text-6xl bg-[#FFF8F0] w-24 h-24 flex items-center justify-center rounded-[30px] overflow-hidden">${data.image ? `<img src="${data.image}" class="w-full h-full object-contain">` : data.icon}</div>
                 <div>
                     <h2 class="text-3xl font-bold tracking-tighter">${data.title}</h2>
                     <p class="text-[#E63946] font-bold text-[10px] tracking-[0.2em] uppercase">Tech Specifications</p>
                 </div>
             </div>
             <div class="pt-4">${specHtml}</div>
+            ${brochureBtn}
             <p class="text-[10px] text-gray-400 leading-relaxed italic pt-4">
                 *Verified by 3S PETS Labs, Pune. All batches are cruelty-free and sustainably sourced.
             </p>
@@ -171,11 +189,74 @@ window.closeTechSheet = () => {
     document.body.style.overflow = 'auto';
 };
 
+// --- 5. BROCHURE VIEWER LOGIC ---
+
+window.openBrochure = (path) => {
+    const viewer = document.getElementById('brochure-viewer');
+    const container = document.getElementById('brochure-container');
+    const img = document.getElementById('brochure-img');
+    
+    if (viewer && img) {
+        // Reset Zoom State on open
+        img.classList.add('max-h-[85vh]');
+        img.classList.remove('max-h-full');
+        if (container) container.scrollTop = 0;
+        
+        img.src = path;
+        viewer.classList.remove('hidden');
+        viewer.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+window.closeBrochure = () => {
+    document.getElementById('brochure-viewer').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+};
+
+window.toggleBrochureZoom = () => {
+    const img = document.getElementById('brochure-img');
+    if (!img) return;
+    
+    const isZoomed = img.classList.contains('max-h-full');
+    
+    if (isZoomed) {
+        img.classList.remove('max-h-full');
+        img.classList.add('max-h-[85vh]');
+    } else {
+        img.classList.remove('max-h-[85vh]');
+        img.classList.add('max-h-full');
+    }
+};
+
+// --- 6. PREMIUM ANIMATIONS (SCROLL REVEAL) ---
+
+function initScrollReveal() {
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const targets = document.querySelectorAll('section, .product-card, .review-card, .footer-content');
+    targets.forEach(target => {
+        target.classList.add('reveal-hidden');
+        observer.observe(target);
+    });
+}
+
+// --- 7. ADMIN & REVIEW INTERACTIVE LOGIC ---
+
 function renderReviews() {
     const container = document.getElementById('review-container');
     if (!container) return;
 
-    container.innerHTML = reviewData.map((rev, index) => `
+    container.innerHTML = reviewsData.map((rev, index) => `
         <div class="review-card group p-10 rounded-[40px] border border-gray-100 hover:border-[#E63946] transition-all duration-500 hover:shadow-2xl ${index % 2 !== 0 ? 'md:mt-12' : ''}">
             <div class="flex gap-1 mb-6">
                 ${Array(rev.rating).fill('<span class="text-[#E63946]">★</span>').join('')}
@@ -253,17 +334,149 @@ async function initContactForm() {
     });
 }
 
-// --- 4. THE MASTER TRIGGER ---
+// --- 5. ADMIN & REVIEW INTERACTIVE LOGIC ---
+
+let adminPass = "";
+let currentRating = 5;
+
+window.setRating = (val) => {
+    currentRating = val;
+    const stars = document.querySelectorAll('.star-btn');
+    stars.forEach((s, i) => {
+        if (i < val) {
+            s.classList.add('text-yellow-400');
+            s.classList.remove('text-gray-200');
+        } else {
+            s.classList.remove('text-yellow-400');
+            s.classList.add('text-gray-200');
+        }
+    });
+};
+
+window.openReviewModal = () => {
+    currentRating = 5; // Reset
+    setRating(5);
+    const modal = document.getElementById('review-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+window.closeReviewModal = () => {
+    document.getElementById('review-modal').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+};
+
+window.submitUserReview = async () => {
+    const formData = {
+        user: document.getElementById('rev-name')?.value,
+        pet: document.getElementById('rev-pet')?.value,
+        text: document.getElementById('rev-text')?.value,
+        rating: currentRating
+    };
+
+    if (!formData.user || !formData.text) {
+        alert("Please fill in your name and review! 🐾");
+        return;
+    }
+
+    try {
+        await ApiService.submitReview(formData);
+        alert("Pawsome! Your review has been submitted for verification. 🧼");
+        closeReviewModal();
+    } catch (err) {
+        alert("Submission failed. Please try again.");
+    }
+};
+
+window.openAdminPortal = () => {
+    const modal = document.getElementById('admin-portal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+window.closeAdminPortal = () => {
+    document.getElementById('admin-portal').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+};
+
+window.loginAdmin = async () => {
+    const pass = document.getElementById('admin-pass-input')?.value;
+    if (!pass) return;
+
+    try {
+        const reviews = await ApiService.getAdminReviews(pass);
+        adminPass = pass;
+        document.getElementById('admin-login').classList.add('hidden');
+        document.getElementById('admin-dashboard').classList.remove('hidden');
+        renderAdminDashboard(reviews);
+    } catch (err) {
+        alert("Incorrect Admin Password. Access Denied.");
+    }
+};
+
+function renderAdminDashboard(reviews) {
+    const queue = document.getElementById('review-queue');
+    const pending = reviews.filter(r => r.status === 'pending');
+    document.getElementById('pending-count').innerText = pending.length;
+
+    queue.innerHTML = reviews.map(rev => `
+        <div class="p-6 bg-gray-50 rounded-3xl border border-gray-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-[#1D1D1F]">${rev.user}</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full ${rev.status === 'approved' ? 'bg-green-100 text-green-600' : 'bg-yellow-100 text-yellow-600'} font-bold uppercase">${rev.status || 'pending'}</span>
+                </div>
+                <p class="text-sm text-gray-500 italic">"${rev.text.substring(0, 80)}${rev.text.length > 80 ? '...' : ''}"</p>
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">${rev.pet}</p>
+            </div>
+            <div class="flex gap-2 w-full md:w-auto">
+                ${rev.status !== 'approved' ? `
+                    <button onclick="handleAdminAction(${rev.id}, 'approve')" class="flex-1 md:flex-none px-4 py-2 bg-green-500 text-white rounded-xl text-xs font-bold hover:bg-green-600 transition-all">Approve</button>
+                ` : ''}
+                <button onclick="handleAdminAction(${rev.id}, 'delete')" class="flex-1 md:flex-none px-4 py-2 bg-gray-200 text-gray-600 rounded-xl text-xs font-bold hover:bg-[#E63946] hover:text-white transition-all">Delete</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+window.handleAdminAction = async (id, action) => {
+    try {
+        await ApiService.updateReviewStatus(adminPass, id, action);
+        const reviews = await ApiService.getAdminReviews(adminPass);
+        renderAdminDashboard(reviews);
+        // Refresh public view
+        renderReviews();
+    } catch (err) {
+        alert("Action failed.");
+    }
+};
+
+// --- 6. THE MASTER TRIGGER ---
 async function renderAll() {
     try {
-        // Fetch products from backend to update the local model
-        const liveData = await ApiService.getProducts();
+        // Parallel fetch for catalog and reviews
+        const [liveData, liveReviews] = await Promise.all([
+            ApiService.getProducts(),
+            ApiService.getReviews()
+        ]);
+
         if (liveData && Object.keys(liveData).length > 0) {
             catalogModel = liveData;
             console.log("3S Catalog synced with Backend API.");
         }
+
+        if (liveReviews && liveReviews.length > 0) {
+            reviewsData = liveReviews;
+            console.log("3S Reviews synced with Backend API.");
+        }
     } catch (error) {
-        console.warn("Backend offline. Using local OFFLINE_FALLBACK catalog.");
+        console.warn("Backend offline or partial sync failure. Using fallback data.");
     } finally {
         // Always render, whether we have live data or fallback
         renderCatalog();
