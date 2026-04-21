@@ -86,6 +86,46 @@ const adminController = {
         } catch (err) {
             res.status(500).json({ error: "Action failed" });
         }
+    },
+
+    /**
+     * Admin broadcast to all unique subscribers
+     */
+    broadcastUpdate: async (req, res) => {
+        if (req.headers['x-admin-pass'] !== process.env.ADMIN_PASS) {
+            return res.status(401).json({ error: "Unauthorized access" });
+        }
+
+        const { subject, message } = req.body;
+        if (!subject || !message) {
+            return res.status(400).json({ error: "Subject and Message are required for broadcast." });
+        }
+
+        try {
+            const SUBS_PATH = path.join(__dirname, '../data/subscribers.json');
+            const data = await fs.readFile(SUBS_PATH, 'utf8');
+            const subscribers = JSON.parse(data);
+
+            // Deduplicate emails
+            const uniqueEmails = [...new Set(subscribers.map(s => s.email.toLowerCase()))];
+
+            // Trigger broadcast via email service (non-blocking for the response)
+            const emailService = require('../services/emailService');
+            uniqueEmails.forEach(email => {
+                emailService.sendBroadcastEmail(email, subject, message).catch(err => {
+                    console.error(`❌ Broadcast delivery failed for ${email}:`, err);
+                });
+            });
+
+            console.log(`📣 Broadcast initialized for ${uniqueEmails.length} recipients.`);
+            res.status(200).json({ 
+                success: true, 
+                message: `Broadcast successfully initiated for ${uniqueEmails.length} subscribers! 🚀`
+            });
+        } catch (err) {
+            console.error("Critical Broadcast Error:", err);
+            res.status(500).json({ error: "Internal error while initiating broadcast." });
+        }
     }
 };
 

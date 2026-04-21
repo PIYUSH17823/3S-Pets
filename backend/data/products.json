@@ -111,6 +111,32 @@
         "Digestibility": "95%",
         "Pet Type": "All Breeds"
       }
+    },
+    {
+      "title": "Authentic Meat Medley",
+      "tag": "Rich Nutrients",
+      "image": "assets/biscuits/meat-biscuit.png",
+      "glow": "#FFE4E1",
+      "desc": "A robust blend of high-quality meats, providing essential amino acids for a shiny coat and overall vitality.",
+      "specs": {
+        "Protein": "26%",
+        "Meat Source": "Beef & Lamb",
+        "Fiber": "3.5%",
+        "Benefit": "Skin & Coat"
+      }
+    },
+    {
+      "title": "Garden Mixed Treats",
+      "tag": "Vitamins & Fiber",
+      "image": "assets/biscuits/mixed-biscuit.png",
+      "glow": "#E8F5E9",
+      "desc": "A holistic mix of veggies and grains, offering a balanced vitamin profile for daily wellness and digestion.",
+      "specs": {
+        "Fiber": "6%",
+        "Vitamins": "A, D3, E",
+        "Digestibility": "98%",
+        "Benefit": "Daily Immunity"
+      }
     }
   ],
   "Cat Litter": [

@@ -37,8 +37,11 @@
             
             <div class="absolute w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-[#E63946] rounded-full blur-[60px] md:blur-[100px] opacity-10 animate-pulse-slow"></div>
 
-            <div class="relative z-20 w-[280px] sm:w-[350px] md:w-[600px] aspect-square flex items-center justify-center filter drop-shadow-[0_25px_25px_rgba(0,0,0,0.15)] animate-float-hero">
-                <img src="assets/hero/hero-dog.png" class="w-full h-full object-contain" alt="Happy Healthy Pet">
+            <div id="hero-slider" class="relative z-20 w-[280px] sm:w-[350px] md:w-[600px] aspect-square flex items-center justify-center filter drop-shadow-[0_25px_25px_rgba(0,0,0,0.15)] animate-float-hero overflow-hidden">
+                <img src="assets/hero/hero-dog.png" class="hero-slide active w-full h-full object-contain absolute inset-0 transition-all duration-1000" alt="Happy Healthy Pet">
+                <img src="assets/hero/hero-cat.png" class="hero-slide w-full h-full object-contain absolute inset-0 transition-all duration-1000 scale-90" alt="Cute Cat">
+                <img src="assets/hero/hero-dog-2.png" class="hero-slide w-full h-full object-contain absolute inset-0 transition-all duration-1000 scale-90" alt="Happy Dog">
+                <img src="assets/hero/hero-dog-3.png" class="hero-slide w-full h-full object-contain absolute inset-0 transition-all duration-1000 scale-90" alt="Smiling Pug">
             </div>
 
             <div class="absolute top-0 right-0 md:top-10 md:right-10 bg-white/40 backdrop-blur-md p-3 md:p-4 rounded-3xl border border-white/50 shadow-xl animate-float-slow hidden md:block">

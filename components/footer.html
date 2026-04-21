@@ -1,19 +1,30 @@
 <footer class="bg-[#1D1D1F] text-white pt-32 pb-12 px-6">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
-            
+
             <div class="md:col-span-4 space-y-6">
-                <div class="text-3xl font-black tracking-tighter flex items-center gap-2">
-                    <span class="bg-[#E63946] text-white w-12 h-12 flex items-center justify-center rounded-2xl">3S</span>
-                    PETS.
+                <div class="flex items-center gap-0">
+                    <img src="assets/logo/logo-gold.png" alt="3S" class="h-16 w-auto object-contain">
+                    <span class="text-3xl font-black text-white tracking-widest uppercase -ml-2">
+                        Pets
+                    </span>
                 </div>
                 <p class="text-gray-400 text-lg leading-relaxed max-w-sm">
                     Reimagining pet wellness through Smart nutrition, Safe ingredients, and Sustainable design.
                 </p>
                 <div class="flex gap-4 pt-4">
-                    <a href="#" class="social-icon">IG</a>
-                    <a href="#" class="social-icon">FB</a>
-                    <a href="#" class="social-icon">LI</a>
+                    <a href="[INSTAGRAM_LINK_HERE]" target="_blank"
+                        class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 hover:bg-[#E63946] transition-all group">
+                        <img src="assets/icons/icons8-instagram-100.png"
+                            class="w-6 h-6 object-contain opacity-50 group-hover:opacity-100 transition-opacity"
+                            alt="Instagram">
+                    </a>
+                    <a href="[FACEBOOK_LINK_HERE]" target="_blank"
+                        class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 hover:bg-[#E63946] transition-all group">
+                        <img src="assets/icons/icons8-facebook-100.png"
+                            class="w-6 h-6 object-contain opacity-50 group-hover:opacity-100 transition-opacity"
+                            alt="Facebook">
+                    </a>
                 </div>
             </div>
 
@@ -41,20 +52,24 @@
                 <h4 class="font-bold text-xs uppercase tracking-[0.2em] text-[#E63946]">Stay Updated</h4>
                 <p class="text-sm text-gray-400">Join 10,000+ pet parents receiving monthly wellness tips.</p>
                 <div class="relative">
-                    <input type="email" placeholder="email@address.com" class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 outline-none focus:border-[#E63946] transition-all">
-                    <button class="absolute right-2 top-2 bottom-2 bg-white text-[#1D1D1F] px-4 rounded-xl font-bold text-xs hover:bg-[#E63946] hover:text-white transition-all">
+                    <input type="email" id="newsletter-email" placeholder="email@address.com"
+                        class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 outline-none focus:border-[#E63946] transition-all">
+                    <button id="newsletter-btn"
+                        class="absolute right-2 top-2 bottom-2 bg-white text-[#1D1D1F] px-4 rounded-xl font-bold text-xs hover:bg-[#E63946] hover:text-white transition-all">
                         JOIN
                     </button>
                 </div>
             </div>
         </div>
 
-        <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-500">
-            <p><span onclick="openAdminPortal()" class="cursor-help hover:text-white transition-all">©</span> 2026 3S PETS. DESIGNED IN PUNE BY DELIGHT PETS LABS.</p>
+        <div
+            class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-500">
+            <p><span onclick="openAdminPortal()" class="cursor-help hover:text-white transition-all">©</span> 2026 3S
+                PETS. DESIGNED IN PUNE BY DELIGHT PETS LABS.</p>
             <div class="flex gap-8">
-                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" class="hover:text-white transition-colors">Accessibility</a>
+                <a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="accessibility.html" class="hover:text-white transition-colors">Accessibility</a>
             </div>
         </div>
     </div>

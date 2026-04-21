@@ -84,10 +84,9 @@ let activeIdx = 0;
 
 // --- 3. THE CONTROLLER (Logic) ---
 
-function renderCatalog() {
+async function renderCatalog() {
     // Safety check: Ensure the category and product exist
     if (!catalogModel[activeCat] || !catalogModel[activeCat][activeIdx]) {
-        console.warn(`Catalog data not found for ${activeCat}[${activeIdx}]. Retrying with first product.`);
         activeIdx = 0;
         if (!catalogModel[activeCat]) return;
     }
@@ -254,7 +253,15 @@ function initScrollReveal() {
 
 function renderReviews() {
     const container = document.getElementById('review-container');
+    const avgDisplay = document.getElementById('avg-rating-value');
     if (!container) return;
+
+    // Calculate dynamic average rating
+    if (reviewsData && reviewsData.length > 0) {
+        const totalRating = reviewsData.reduce((acc, curr) => acc + (curr.rating || 0), 0);
+        const avg = (totalRating / reviewsData.length).toFixed(1);
+        if (avgDisplay) avgDisplay.innerText = `${avg}/5`;
+    }
 
     container.innerHTML = reviewsData.map((rev, index) => `
         <div class="review-card group p-10 rounded-[40px] border border-gray-100 hover:border-[#E63946] transition-all duration-500 hover:shadow-2xl ${index % 2 !== 0 ? 'md:mt-12' : ''}">
@@ -457,6 +464,39 @@ window.handleAdminAction = async (id, action) => {
     }
 };
 
+async function initNewsletter() {
+    const btn = document.getElementById('newsletter-btn');
+    const emailInput = document.getElementById('newsletter-email');
+
+    if (!btn || !emailInput) return;
+
+    btn.addEventListener('click', async () => {
+        const email = emailInput.value;
+        if (!email || !email.includes('@')) {
+            alert("Please enter a valid email address. 🐾");
+            return;
+        }
+
+        const originalText = btn.innerText;
+        btn.disabled = true;
+        btn.innerText = "JOINING...";
+
+        try {
+            const result = await ApiService.subscribeNewsletter({ email });
+            btn.innerText = "JOINED! 🐾";
+            btn.style.backgroundColor = '#10b981'; // Green-500
+            btn.style.color = 'white';
+            alert(result.message);
+            emailInput.value = "";
+        } catch (error) {
+            console.error("Newsletter Error:", error);
+            alert("Subscription failed. Please ensure the backend is running.");
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }
+    });
+}
+
 // --- 6. THE MASTER TRIGGER ---
 async function renderAll() {
     try {
@@ -482,8 +522,51 @@ async function renderAll() {
         renderCatalog();
         renderReviews();
         initContactForm();
+        initNewsletter();
     }
 }
+
+// --- 7. ADMIN PORTAL LOGIC ---
+window.sendBroadcast = async function () {
+    const passInput = document.getElementById('admin-pass-input');
+    const subjectInput = document.getElementById('broadcast-subject');
+    const messageInput = document.getElementById('broadcast-message');
+    const btn = document.getElementById('broadcast-btn');
+
+    if (!passInput || !subjectInput || !messageInput || !btn) return;
+
+    const pass = passInput.value;
+    const subject = subjectInput.value;
+    const message = messageInput.value;
+
+    if (!subject || !message) {
+        alert("Please provide both a subject and a message. 🐾");
+        return;
+    }
+
+    if (!confirm(`Are you sure you want to broadcast this message to your subscribers?`)) return;
+
+    const originalText = btn.innerText;
+    btn.disabled = true;
+    btn.innerText = "SENDING BROADCAST...";
+
+    try {
+        const result = await ApiService.broadcast(pass, subject, message);
+        if (result.success) {
+            alert(result.message);
+            subjectInput.value = "";
+            messageInput.value = "";
+        } else {
+            alert(result.error || "Broadcast failed.");
+        }
+    } catch (err) {
+        console.error("Broadcast Logic Error:", err);
+        alert("Connection failed. Please ensure the backend is running.");
+    } finally {
+        btn.disabled = false;
+        btn.innerText = originalText;
+    }
+};
 
 window.changeCategory = (c) => {
     if (catalogModel[c]) {
@@ -506,3 +589,22 @@ window.prevProduct = () => {
         renderCatalog();
     }
 };
+
+// --- 8. HERO SLIDER LOGIC ---
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    if (slides.length === 0) return;
+
+    let currentSlide = 0;
+    
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        
+        currentSlide = (currentSlide + 1) % slides.length;
+        
+        slides[currentSlide].classList.add('active');
+    }, 5000); // Change every 5 seconds
+}
+
+// Export for loader
+window.initHeroSlider = initHeroSlider;

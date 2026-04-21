@@ -12,8 +12,8 @@ html {
     scroll-behavior: smooth;
 }
 
-body { 
-    font-family: 'Fredoka', sans-serif; 
+body {
+    font-family: 'Fredoka', sans-serif;
     background-color: var(--brand-cream);
     color: var(--text-dark);
     margin: 0;
@@ -23,8 +23,8 @@ body {
 /* 3. Utility Components */
 
 /* The Bubbly Background Shape for Product Blobs */
-.blob { 
-    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; 
+.blob {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
 }
 
 /* Standard Section Spacing */
@@ -37,9 +37,11 @@ section {
 ::-webkit-scrollbar {
     width: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background: var(--brand-cream);
 }
+
 ::-webkit-scrollbar-thumb {
     background: var(--brand-red);
     border-radius: 10px;
@@ -53,8 +55,13 @@ section {
 }
 
 @keyframes skeleton-loading {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 .animate-modal-up {
@@ -62,8 +69,15 @@ section {
 }
 
 @keyframes modal-up {
-    from { opacity: 0; transform: translateY(20px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 /* 6. Scroll Reveal Animations */

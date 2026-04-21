@@ -70,6 +70,26 @@ const createEnquiry = async (req, res) => {
         db.enquiries.push(newEnquiry);
         await writeDB(db);
 
+        // 2b. Add to unified subscribers list
+        try {
+            const SUBSCRIBERS_PATH = path.join(DATA_DIR, 'subscribers.json');
+            let subs = [];
+            if (fs.existsSync(SUBSCRIBERS_PATH)) {
+                subs = JSON.parse(fs.readFileSync(SUBSCRIBERS_PATH));
+            }
+            if (!subs.find(s => s.email.toLowerCase() === value.email.toLowerCase())) {
+                subs.push({
+                    email: value.email.toLowerCase(),
+                    phone: value.phone || '', // Capture phone for pings/WhatsApp
+                    source: 'enquiry',
+                    subscribedAt: new Date().toISOString()
+                });
+                fs.writeFileSync(SUBSCRIBERS_PATH, JSON.stringify(subs, null, 2));
+            }
+        } catch (subErr) {
+            console.error("Failed to update subscribers during enquiry:", subErr);
+        }
+
         // 3. Trigger Email (Runs in background)
         // We catch errors here so they don't crash the server, but we log them.
         emailService.sendEnquiryEmail(newEnquiry).catch(err => {

@@ -45,6 +45,19 @@
                         <!-- Reviews generated here -->
                     </div>
                 </div>
+
+                <div class="pt-10 border-t border-gray-100 space-y-6">
+                    <h3 class="text-xl font-bold flex items-center gap-2">📣 Broadcast Update</h3>
+                    <p class="text-gray-400 text-sm">Send a direct email update to all community members and customers.</p>
+                    
+                    <div class="space-y-4 bg-gray-50 p-8 rounded-[30px] border border-gray-100">
+                        <input type="text" id="broadcast-subject" placeholder="Email Subject (e.g., New Pet Wellness Tips!)" class="w-full bg-white border border-gray-200 rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#E63946] transition-all">
+                        <textarea id="broadcast-message" rows="5" placeholder="Write your message here..." class="w-full bg-white border border-gray-200 rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-[#E63946] transition-all resize-none"></textarea>
+                        <button onclick="sendBroadcast()" id="broadcast-btn" class="bg-[#1D1D1F] text-white px-10 py-4 rounded-2xl font-bold hover:bg-[#E63946] transition-all flex items-center gap-2">
+                            🚀 Send Broadcast
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

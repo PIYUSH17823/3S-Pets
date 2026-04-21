@@ -5,6 +5,24 @@ const API_BASE_URL = window.location.hostname === 'localhost' || window.location
 
 const ApiService = {
     /**
+     * Subscribe to newsletter
+     */
+    async subscribeNewsletter(formData) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/newsletter`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            if (!response.ok) throw new Error('Newsletter subscription failed');
+            return await response.json();
+        } catch (error) {
+            console.error("Newsletter Error:", error);
+            throw error;
+        }
+    },
+
+    /**
      * Sends a contact enquiry to the backend
      * @param {Object} formData { fullName, petInfo, email, phone, message }
      */
@@ -80,6 +98,15 @@ const ApiService = {
     /**
      * Fetches all reviews for admin manager
      */
+    async broadcast(pass, subject, message) {
+        const response = await fetch(`${API_BASE_URL}/admin/broadcast`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-admin-pass': pass },
+            body: JSON.stringify({ subject, message })
+        });
+        return await response.json();
+    },
+
     async getAdminReviews(password) {
         try {
             const response = await fetch(`${API_BASE_URL}/admin/reviews`, {
