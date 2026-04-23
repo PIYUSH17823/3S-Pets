@@ -15,6 +15,20 @@
       }
     },
     {
+      "title": "Dry Bath (Cool)",
+      "tag": "Refreshing Mist",
+      "image": "assets/shampoo/Dry bath _cool copy.png",
+      "glow": "#F0F8FF",
+      "desc": "A cooling waterless bath solution for an instant refresh and odor control without water.",
+      "brochure": "assets/descriptions/3S Pets All Product Catalouge_6.jpg.jpeg",
+      "specs": {
+        "Key Ingredients": "Menthol, Aloe Vera, Neem",
+        "Type": "Cooling Spray",
+        "Sizes": "200 ml",
+        "Benefit": "Instant Cooling"
+      }
+    },
+    {
       "title": "Oatmeal Silk Protein",
       "tag": "Hydrating Ritual",
       "image": "assets/shampoo/oatmeal-silk.png",
@@ -73,7 +87,7 @@
     {
       "title": "4-IN-1 Shampoo",
       "tag": "Holistic Healing",
-      "image": "assets/shampoo/shampoo3.png",
+      "image": "assets/shampoo/4 in 1 copy.png",
       "glow": "#FFF8F0",
       "desc": "A powerhouse formula with Curcumin and Turmeric to combat itching, dandruff, and scabs.",
       "brochure": "assets/descriptions/3S Pets All Product Catalouge_5.jpg.jpeg",

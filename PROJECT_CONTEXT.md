@@ -19,6 +19,7 @@
 | `privacy-policy.html` | HTML | ✏️ Modified | Updated with Indian legal content (IT Act/SPDI). |
 | `terms.html` | HTML | ✏️ Modified | Updated with Indian governing law and Pune jurisdiction. |
 | `accessibility.html` | HTML | ✏️ Modified | Updated with RPWD Act 2016 compliance details. |
+| `backend/data/products.json` | JSON | ✏️ Modified | Source of truth for product catalog data. |
 | `PROJECT_CONTEXT.md` | MD | ✏️ Modified | Living project documentation and change log. |
 
 ## API & Logic Registry
@@ -45,6 +46,8 @@
 ## Change Log
 | Step | Action | File | Engineering Details |
 | :--- | :--- | :--- | :--- |
+| Step-29 | MODIFY | `global.css`, `loader.js`, `render.js` | Performance Optimization: Engineered a Multi-Stage Loading System. Launched an Asset Pre-fetcher to cache hero and catalog images during the preloader phase. Refined the skeleton system with a shimmer pulse and implemented a Scale-Reveal transition for product icons to eliminate layout shifts and "blank" states. |
+| Step-28 | MODIFY | `products.json`, `render.js` | Catalog Update: Integrated new high-res asset for 4-in-1 Shampoo and launched the 'Dry Bath (Cool)' variant. Linked the shared brochure asset from the Dove variant to the Cool variant per user clarification, ensuring consistent technical documentation across both waterless bath products. |
 | Step-27 | MODIFY | `navbar.html`, `footer.html`, Legal Pages | Final Polishing: Unified "Logo + Text" lockup across header/footer. Implemented full-site reload on logo click. Authored localized Indian legal content for Privacy, Terms, and Accessibility. |
 | Step-26 | CREATE/MODIFY | `admin.html`, `adminController.js`, `subscribers.json`, `emailService.js` | Broadcast Launch: Engineered a unified `subscribers.json` DB and a corresponding Admin Broadcast Panel. Admin can now send branded bulk updates to every lead in the system. |
 | Step-25 | CREATE/MODIFY | `footer.html`, `app.js`, `api.js`, `newsletterController.js` | Community Integration: Refined footer branding with Logo+Text lockup. Engineered a backend subscription service to allow users to "Join the Community" via the newsletter form. |

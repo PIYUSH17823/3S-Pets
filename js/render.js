@@ -9,6 +9,12 @@ const OFFLINE_FALLBACK = {
             specs: { "Type": "Waterless", "Key Benefit": "Quick Refresh", "Scent": "Soft Dove", "Safety": "PH Balanced" }
         },
         {
+            title: "Dry Bath (Cool)", tag: "Refreshing Mist", image: "assets/shampoo/Dry bath _cool copy.png", glow: "#F0F8FF",
+            desc: "A cooling waterless bath solution for an instant refresh and odor control without water.",
+            brochure: "assets/descriptions/3S Pets All Product Catalouge_6.jpg.jpeg",
+            specs: { "Key Ingredients": "Menthol, Aloe Vera, Neem", "Type": "Cooling Spray", "Sizes": "200 ml", "Benefit": "Instant Cooling" }
+        },
+        {
             title: "Oatmeal Silk Protein", tag: "Hydrating Formula", image: "assets/shampoo/oatmeal-silk.png", glow: "#FFD1D1",
             desc: "Enriched with silk protein and oatmeal for deep hydration and a majestic shine.",
             specs: { "Key Ingredient": "Oatmeal", "Conditioner": "Built-in", "Benefit": "Silk Texture", "Size": "Professional" }
@@ -27,6 +33,11 @@ const OFFLINE_FALLBACK = {
             title: "Kitten Cat Shampoo", tag: "Feline Care", image: "assets/shampoo/kitten-cat.png", glow: "#E4D1FF",
             desc: "Specifically formulated for felines, maintaining the perfect pH level for cat skin.",
             specs: { "Target Pet": "Cats/Kittens", "Conditioner": "Built-in", "pH Level": "Balanced", "Scent": "Cat-Friendly" }
+        },
+        {
+            title: "4-IN-1 Shampoo", tag: "Holistic Healing", image: "assets/shampoo/4 in 1 copy.png", glow: "#FFF8F0",
+            desc: "A powerhouse formula with Curcumin and Turmeric to combat itching, dandruff, and scabs.",
+            specs: { "Key Ingredients": "Curcumin", "Defense": "Anti-Fungal", "Sizes": "100-5000ml", "Benefit": "Deep Healing" }
         }
     ],
     "Biscuits": [
@@ -110,14 +121,16 @@ async function renderCatalog() {
         if (data.image) {
             const isLitter = activeCat === "Cat Litter";
             icon.classList.add('skeleton'); // Add loading pulse
+            icon.style.minHeight = '300px'; // Prevent layout shift
             
             const img = new Image();
             img.src = data.image;
             img.onload = () => {
                 icon.classList.remove('skeleton'); // Remove pulse when loaded
                 icon.innerHTML = `<img src="${data.image}" 
-                    class="w-full h-full object-contain animate-fade-in ${isLitter ? 'scale-[1.4]' : 'scale-110'}" 
+                    class="w-full h-full object-contain opacity-0 scale-95 transition-all duration-700 ease-out ${isLitter ? 'scale-[1.4]' : ''}" 
                     style="transform-origin: bottom center;" 
+                    onload="this.classList.replace('opacity-0', 'opacity-1'); this.classList.replace('scale-95', 'scale-110');"
                     alt="${data.title}">`;
                 icon.style.opacity = 1;
             };
