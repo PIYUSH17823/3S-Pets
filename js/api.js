@@ -1,7 +1,7 @@
 // js/api.js
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:8080/api/v1'
-    : 'https://threesspets.com/api/v1';
+    ? 'http://localhost:8125/api/v1'
+    : `${window.location.protocol}//${window.location.hostname}/api/v1`;
 
 const ApiService = {
     /**

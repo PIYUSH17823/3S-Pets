@@ -3,10 +3,12 @@ const nodemailer = require('nodemailer');
 // For development/demo, we can use a test account or environment variables
 // In production, the client will provide their SMTP (Gmail/Outlook/Zoho) details
 const transporter = nodemailer.createTransport({
-    service: 'gmail', // Standard choice, can be changed
+    host: 'smtp.hostinger.com',
+    port: 587,
+    secure: false,
     auth: {
-        user: process.env.EMAIL_USER || 'your-client-email@gmail.com',
-        pass: process.env.EMAIL_PASS || 'your-app-password'
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
 

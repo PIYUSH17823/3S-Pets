@@ -333,7 +333,7 @@ async function initContactForm() {
         } catch (error) {
             console.error("3S Backend Error:", error);
             const errorMsg = error.message || "Unknown Connection Error";
-            alert(`Connection failed: ${errorMsg}. Please ensure your backend is running at http://localhost:8080`);
+            alert(`Connection failed: ${errorMsg}. Please ensure your backend is running at http://localhost:8125`);
             submitBtn.disabled = false;
             submitBtn.innerText = originalBtnText;
             submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');

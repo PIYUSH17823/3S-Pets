@@ -9,4 +9,4 @@ Disallow: /admin
 Disallow: /api/v1/admin
 
 # Sitemap location
-Sitemap: https://threesspets.com/sitemap.xml
+Sitemap: https://threespets.com/sitemap.xml
