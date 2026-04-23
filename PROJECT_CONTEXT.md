@@ -46,6 +46,7 @@
 ## Change Log
 | Step | Action | File | Engineering Details |
 | :--- | :--- | :--- | :--- |
+| Step-30 | CREATE/MODIFY | `.gitignore`, Git Repo | Infrastructure Hardening: Engineered a comprehensive `.gitignore` to prevent `node_modules` and sensitive `.env` files from leaking into the repository. Successfully synchronized all catalog, performance, and manual UI updates to the `development` branch. |
 | Step-29 | MODIFY | `global.css`, `loader.js`, `render.js` | Performance Optimization: Engineered a Multi-Stage Loading System. Launched an Asset Pre-fetcher to cache hero and catalog images during the preloader phase. Refined the skeleton system with a shimmer pulse and implemented a Scale-Reveal transition for product icons to eliminate layout shifts and "blank" states. |
 | Step-28 | MODIFY | `products.json`, `render.js` | Catalog Update: Integrated new high-res asset for 4-in-1 Shampoo and launched the 'Dry Bath (Cool)' variant. Linked the shared brochure asset from the Dove variant to the Cool variant per user clarification, ensuring consistent technical documentation across both waterless bath products. |
 | Step-27 | MODIFY | `navbar.html`, `footer.html`, Legal Pages | Final Polishing: Unified "Logo + Text" lockup across header/footer. Implemented full-site reload on logo click. Authored localized Indian legal content for Privacy, Terms, and Accessibility. |
